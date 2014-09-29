@@ -1,0 +1,22 @@
+<%=render 'shared/content_title',title: 'All Projects' %>
+
+
+ <p><span><%= link_to "Create New Project", new_project_path %></span> </p>
+
+ <% @projects.each do |project|%>
+ <div class = "row">
+ <div class = "span8 well" >
+  <h4><%= link_to  project.name, project_path(project) %></h4>
+   <p><%= project.url %> </p>
+
+   <p>
+     <span class="quiet"> created by  </span><%= project.creator.username %> </p>
+
+   <%= link_to 'Update', edit_project_path( project) %>
+
+
+
+ </div>
+ </div>
+
+ <%end%>

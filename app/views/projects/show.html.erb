@@ -1,0 +1,23 @@
+<%=render 'shared/content_title',title: 'All Issues' %>
+<em><%= link_to 'Log new Issue', new_project_issue_path( @project,@issue ) %></em>
+<br/>
+<br/>
+<% @project.issues.each do |issue|%>
+    <div class = "row">
+      <div class = "span8 well" >
+        <span class="label label-danger"><%= issue.severity.name %></span>
+        <span class="badge"><%= issue.priority.name %></span>
+        <span class="label label-info"><%= issue.state.name %></span>
+        <br/>
+        <br/>
+        <em><%= link_to  issue.title, project_issue_path( @project, issue ) %></em>
+        <br/>
+        <span class='quiet'>Assigned to: </span><%= issue.creator.username %>
+        <%= link_to 'Update', edit_project_path( @project) %>
+      </div>
+    </div>
+
+<%end%>
+
+
+

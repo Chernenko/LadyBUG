@@ -1,0 +1,25 @@
+
+<div class='well'>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <% if @user.image.blank? %>
+            <div class="panel panel-default ,height: '400', width: '400'">
+              <%= image_tag("ava.png",height: '400', width: '400') %>
+            </div>
+        <% else %>
+            <div class="panel panel-default">
+              <%=  image_tag @user.image_url(:profile).to_s %>
+            </div>
+        <% end %>
+      </div>
+      <div class="span10">
+
+        <h2>Username:</h2>
+        <strong><%= @user.username%></strong></strong>
+    </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,48 @@
+
+<%=render 'shared/content_title',title:  @issue.title %>
+
+<div class ='well'>
+  <div class="pull-right">
+    <span class="label label-danger"><%= @issue.severity.name %></span>
+    <span class="badge"><%= @issue.priority.name %></span>
+    <span class="label label-info"><%= @issue.state.name %></span>
+    <br/>
+  </div>
+  <br/>
+  <%=@issue.description%>
+
+  <span class="quiet"> Assigned to: </span><%= @issue.creator.username %> </p>
+  <%= link_to 'Update Issue Properties ', edit_project_issue_path(@project,@issue) %>
+</div>
+
+<div class="panel panel-default">
+  <%= link_to (image_tag @issue.image_url(:thumb).to_s), screenshot_project_issue_path(@project,@issue)%>
+</div>
+
+
+<div class="panel panel-default">
+  <% @issue.reload.comments.each do |comment|%>
+
+      <div class="panel-body">
+        <%= render 'comments/comment', comment:comment%>
+  <%end%>
+
+  </div>
+</div>
+<p class ="center"></p>
+    <%= form_for [@project, @issue, @comment] do|f| %>
+    <%= render 'shared/errors',obj: @comment %>
+        <div class='control-group'>
+          <%= f.label :body,"Add Comment" %>
+        </div>
+        <%= f.text_area :body, rows: 3, class: 'span8' %>
+        <div class='control-group'>
+          <br/>
+          <%= f.submit 'Add Comment',class: 'btn btn-primary' %>
+    <%end%>
+
+    </div>
+</p>
+
+</div>
+

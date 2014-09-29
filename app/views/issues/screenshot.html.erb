@@ -1,0 +1,5 @@
+<%=render 'shared/content_title',title:  @issue.title %>
+<div class="well">
+<%= link_to 'Back to Issue', project_issue_path(@project,@issue) %>
+</div>
+<%= image_tag @issue.image_url(:screen).to_s %>

@@ -1,0 +1,46 @@
+<div class = 'span10 well'>
+  <%= render 'shared/errors',obj: @issue %>
+  <%= form_for [@project, @issue],:html => {:multipart =>true } do |f| %>
+      <div class='control-group' >
+        <%= f.label :title %>
+        <br/>
+        <%= f.text_field :title%>
+      </div>
+      <div class = 'form-inline'>
+        <%= f.label :description,'Please provide STR.' %>
+        <br/>
+        <%= f.text_area :description ,rows: 8, class: 'span8' %>
+        <br/>
+      </div>
+      <br/>
+      <div class = 'form-inline'>
+        <br/>
+        <%= f.label 'Severity' %>
+
+        <%= f.collection_select(:severity_id, Severity.all, :id, :name ) %>
+        &nbsp
+
+        <%= f.label 'Priority' %>
+        <%= f.collection_select(:priority_id, Priority.all, :id, :name ) %>
+      </div>
+      <br/>
+
+      <div class = 'form-inline'  >
+        <%= f.label 'Status'   %>&nbsp;&nbsp
+        <%= f.collection_select(:state_id, State.all, :id, :name ) %>
+        &nbsp;&nbsp;&nbsp
+
+        <%= f.label 'Assigned to :  '   %>
+        <%= f.collection_select(:user_id, User.all, :id, :username ) %>
+      </div>
+      <br/>
+
+      <div class = 'form-inline'  >
+        <%= f.file_field :image %>
+      </div>
+
+      <div class="col-lg-0">
+        <%= f.submit 'Submit', class:"btn btn-primary"  %>
+      </div>
+  <% end %>
+</div>

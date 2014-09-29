@@ -1,0 +1,23 @@
+<%= render'shared/errors', obj: @project  %>
+<div class='well'>
+  <%=form_for @project do |f| %>
+
+      <div class='control-group'>
+        <%= f.label :name %>
+        <div class="col-lg-0">
+          <%= f.text_field :name%>
+        </div>
+      </div>
+      <div class='control-group'>
+        <%= f.label :url %>
+        <div class="col-lg-0">
+
+          <%= f.text_field :url%>
+        </div>
+      </div>
+
+      <div class="col-lg-0">
+        <%= f.submit 'Submit', class:"btn btn-primary"  %>
+      </div>
+  <% end %>
+</div>
