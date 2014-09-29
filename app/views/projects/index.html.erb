@@ -1,22 +1,32 @@
-<%=render 'shared/content_title',title: 'All Projects' %>
 
-
- <p><span><%= link_to "Create New Project", new_project_path %></span> </p>
-
- <% @projects.each do |project|%>
- <div class = "row">
- <div class = "span8 well" >
-  <h4><%= link_to  project.name, project_path(project) %></h4>
-   <p><%= project.url %> </p>
-
-   <p>
-     <span class="quiet"> created by  </span><%= project.creator.username %> </p>
-
-   <%= link_to 'Update', edit_project_path( project) %>
-
-
-
- </div>
- </div>
-
- <%end%>
+<% if !logged_in? %>
+    <div class="jumbotron">
+      <p align="center"> Log, track & resolve bugs with </p>
+      <h1 align="center" >LadyBug</h1>
+      <div class = "center">
+        <p> Benefits:</p>
+        <em> <h4><i class="icon-ok icon-black"></i> Improve communication</h4>
+          <h4><i class="icon-ok icon-black"></i> Increase product quality</h4>
+          <h4><i class="icon-ok icon-black"></i> Improve customer satisfaction</h4>
+          <h4><i class="icon-ok icon-black"></i> Ensure accountability</h4>
+          <h4><i class="icon-ok icon-black"></i> Increase productivity</h4></em>
+        <br>
+        <p> Support:</p>
+        <em> Free online training sessions</em>
+      </div>
+<% else %>
+    <%=render 'shared/content_title',title: 'All Projects' %>
+    <p><span><%= button_to "Create New Project", new_project_path,class: 'btn btn-large btn-primary',:method => :get  %></span> </p>
+    <% @projects.each do |project|%>
+        <div class = "row">
+          <div class = "span8 well" >
+            <h4><%= link_to  project.name, project_path(project) %></h4>
+            <p><%= project.url %> </p>
+            <p>
+              <span class="quiet"> created by  </span><%= project.creator.username %> </p>
+            <%= link_to 'Update', edit_project_path( project) %>
+          </div>
+        </div>
+    <%end%>
+    </div>
+<% end %>

@@ -1,4 +1,5 @@
 class Issue < ActiveRecord::Base;
+  include Sluggable
   belongs_to :creator,foreign_key: 'user_id', class_name: 'User'
   belongs_to :project
   belongs_to :state
@@ -9,5 +10,6 @@ class Issue < ActiveRecord::Base;
   validates :title, presence: true, uniqueness: true
   validates :description,  presence: true, uniqueness: true
   mount_uploader :image, ImageUploader
+  sluggable_column :title
 end
 

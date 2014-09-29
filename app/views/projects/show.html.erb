@@ -1,5 +1,5 @@
 <%=render 'shared/content_title',title: 'All Issues' %>
-<em><%= link_to 'Log new Issue', new_project_issue_path( @project,@issue ) %></em>
+<p><span><%= button_to "Log new Issue", new_project_issue_path( @project,@issue ),class: 'btn btn-large btn-primary',:method => :get  %></span> </p>
 <br/>
 <br/>
 <% @project.issues.each do |issue|%>
@@ -10,13 +10,12 @@
         <span class="label label-info"><%= issue.state.name %></span>
         <br/>
         <br/>
-        <em><%= link_to  issue.title, project_issue_path( @project, issue ) %></em>
+        <h3><%= link_to  issue.title, project_issue_path( @project, issue ) %></h3>
         <br/>
         <span class='quiet'>Assigned to: </span><%= issue.creator.username %>
-        <%= link_to 'Update', edit_project_path( @project) %>
+        <br>
       </div>
     </div>
-
 <%end%>
 
 

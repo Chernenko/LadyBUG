@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140928083315) do
+ActiveRecord::Schema.define(version: 20140929015441) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140928083315) do
     t.integer  "priority_id"
     t.integer  "state_id"
     t.string   "image"
+    t.string   "slug"
   end
 
   create_table "priorities", force: true do |t|
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 20140928083315) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   create_table "severities", force: true do |t|
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140928083315) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+    t.string   "slug"
   end
 
 end

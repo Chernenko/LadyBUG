@@ -16,31 +16,26 @@
       <div class = 'form-inline'>
         <br/>
         <%= f.label 'Severity' %>
-
         <%= f.collection_select(:severity_id, Severity.all, :id, :name ) %>
         &nbsp
-
         <%= f.label 'Priority' %>
         <%= f.collection_select(:priority_id, Priority.all, :id, :name ) %>
       </div>
       <br/>
-
       <div class = 'form-inline'  >
         <%= f.label 'Status'   %>&nbsp;&nbsp
         <%= f.collection_select(:state_id, State.all, :id, :name ) %>
         &nbsp;&nbsp;&nbsp
-
         <%= f.label 'Assigned to :  '   %>
         <%= f.collection_select(:user_id, User.all, :id, :username ) %>
       </div>
       <br/>
-
       <div class = 'form-inline'  >
         <%= f.file_field :image %>
       </div>
-
       <div class="col-lg-0">
         <%= f.submit 'Submit', class:"btn btn-primary"  %>
       </div>
   <% end %>
+  <p><span><%= button_to 'Cancel',project_issue_path( @project,@issue ),class: 'btn btn-large btn-primary', :method => :get  %></span> </p>
 </div>

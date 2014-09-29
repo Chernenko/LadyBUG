@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project= Project.find(params[:id])
+
     @issue = Issue.new
   end
 
@@ -16,8 +16,9 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project.creator = current_user
     @project = Project.new(project_params)
+    @project.creator = current_user
+
     if @project.save
       flash[:notice] = "The new project was created"
       redirect_to projects_path
@@ -49,7 +50,7 @@ class ProjectsController < ApplicationController
   end
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.find_by slug: params[:id]
   end
 
 

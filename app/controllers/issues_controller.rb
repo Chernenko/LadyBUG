@@ -4,18 +4,24 @@ class IssuesController < ApplicationController
 
   def new
     @issue = Issue.new
+
   end
 
   def create
-    @issue= @project.issues.build(params.require(:issue).permit(:title,:description,:severity_id,:priority_id,:state_id,:user_id,:image))
+
+    @issue = @project.issues.build(params.require(:issue).permit(:title,:description,:severity_id,:priority_id,:state_id,:user_id,:image))
+    @issue.creator = current_user
     @project.reload
     if @issue.save
-      flash[:notice]= 'New Issue was created .'
+      flash[:notice] = 'New Issue was created .'
       redirect_to projects_path
     else
-      render '/issues/show'
+      render :new
     end
   end
+
+
+
   def show
     @comment = Comment.new
   end
@@ -32,11 +38,12 @@ class IssuesController < ApplicationController
   def edit;end
 
   def set_issue
-    @issue = Issue.find(params[:id])
+    @issue = Issue.find_by slug: params[:id]
   end
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = Project.find_by slug: params[:project_id]
+
   end
 
   def issue_params
